@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    <link rel="stylesheet" href="{% static 'todo/css/style.css' %}">
+</head>
+
+<body>
+    {% if todo %}
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Confirm delete</p>
+            <form method="post" action="{% url 'todo:delete' todo.id %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ todo.id }}">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+        <h3>An error occured</h3>
+    {% endif %}
+</body>
+
+</html>

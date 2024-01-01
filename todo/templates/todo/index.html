@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="{% static 'todo/css/style.css' %}">
+</head>
+<body>
+    <form id="addtodo" class="header" method="post" action="{% url 'todo:add' %}">
+        {% csrf_token %}
+        <h2>My To Do List</h2>
+        <input type="text" name="task" id="inptodo" placeholder="Task...">
+        <button type="submit" class="addBtn">Add</button>
+    </form>
+
+        {% if err_msg %}
+            <h6 style="color:brown">{{ err_msg }}</h6>
+        {% endif %}
+
+      {% if todos %}
+      <table id="myul">
+        <tr>
+            <td><h4>Task</h4></td>
+            <td><h4>Status</h4></td>
+            <td colspan="2" style="text-align: center;"><h4>Action</h4></td>
+        </tr>
+      {% for todo in todos %}
+        <tr id="todo{{todo.id}}" class="{% if todo.status == 'completed' %}checked{% endif %}">
+            <td>{{ todo.task }}</td>
+            <td>{{ todo.status }}</td>
+            <td><a class="editBtn" href="{% url 'todo:editform' todo.id %}">Edit</a></td>
+            <td><a class="delBtn" url="{% url 'todo:delete' todo.id %}">Delete</a></td>
+        </tr>
+      {% endfor %}
+      </table>
+      {% else %}
+        <h3>No todos found</h3>
+      {% endif %}
+      
+      <div id="modalContainer"></div>
+        
+
+    <script>
+        modalContainer = document.getElementById('modalContainer');
+        delBtns = document.querySelectorAll('.delBtn');
+        delBtns && delBtns.forEach(delBtn => {
+            delBtn.onclick = showModal
+        });
+
+        function toggleModal(val){
+            if(!val) return
+            document.getElementById('confirmDelete').style.display = val;
+        }
+
+        function showModal(ele){
+            url =  ele.target.getAttribute('url')
+            let html = ''
+            html += `<div id='confirmDelete' class='modal'>`
+            html += `<div class='modal-content'>`
+            html += `    <div id='close' class='close'>&times;</div>`
+            html += `    <p>Confirm delete</p>`
+            html += `    <form method='post' action=${url}>`
+            html += `        {% csrf_token %}`
+            html += `        <button id='delbtn' type='submit'>Delete</button>`
+            html += `    </form>`
+            html += `    <button id='closebtn' class='close'>Cancel</button>`
+            html += `    </div>`
+            html += `</div>`
+            modalContainer && (modalContainer.innerHTML = html)
+
+            closeModal = document.querySelectorAll('.close');
+            closeModal && closeModal.forEach(btn => {
+                btn.onclick = function(){toggleModal('none')};
+            });
+        }
+
+    </script>
+
+</body>
+</html>

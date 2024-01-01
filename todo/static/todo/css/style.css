@@ -1,0 +1,216 @@
+body{
+    width: 600px;
+}
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  #editfrm{
+    height: 150px !important;
+    background-color: cadetblue;
+    padding: 10px 40px;
+    color: white;
+    text-align: center;
+  }
+  
+  #myul tr {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border: 1px solid black
+  }
+  
+  
+  #myul tr td {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+  
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  
+  #myul tr td:nth-child(odd) {
+    background: #f9f9f9;
+  }
+  
+  
+  #myul tr td:hover {
+    background: #ddd;
+  }
+  
+  
+  #myul tr.checked {
+    background: #888;
+    /* color: #fff; */
+    text-decoration: line-through;
+  }
+  
+  
+  #myul tr td.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
+  
+  
+  #close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  #close:hover {
+    background-color: #f44336;
+    color: white;
+  }
+
+  #closebtn{
+    padding: 2px;
+    background-color:darkslategray;
+    color:white
+  }
+  
+  #delbtn{
+    padding: 2px;
+    background-color: brown;
+    color:white;
+    float: right;
+  }
+  
+  .header {
+    background-color: cadetblue;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+  }
+  
+  
+  .header:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  
+  #addtodo input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+  }
+  
+  
+  .addBtn {
+    padding: 10px;
+    width: 23%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 5px;
+    border: 0 !important;
+  }
+  
+
+  .editBtn {
+    padding: 5px;
+    width: 52px;
+    background: blue;
+    color: white;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 5px;
+    border: 0 !important;
+  }
+
+  .delBtn {
+    padding: 5px;
+    width: 52px;
+    background: brown;
+    color: white;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 5px;
+    border: 0 !important;
+  }
+
+  .addBtn:hover {
+    background-color: #bbb;
+  }
+
+
+.bg_green{
+    background-color: rgba(0, 100, 10, 0.9) !important;
+}
+
+
+.modal {
+    /* display: none;   */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 50%;
+    top: 50%;
+    width: 400px; /* Full width */
+    height: auto; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  #close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  #close:hover,
+  #close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
